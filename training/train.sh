@@ -10,6 +10,9 @@
 
 set -euo pipefail
 
+export HF_HOME="$SCRATCH/.cache/huggingface"
+mkdir -p "$HF_HOME"
+
 REPO_DIR="${SLURM_SUBMIT_DIR:-$PWD}"
 cd "$REPO_DIR"
 DATASET_DIR="$REPO_DIR/data/train.jsonl"
