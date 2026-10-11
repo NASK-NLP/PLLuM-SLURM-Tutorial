@@ -1,0 +1,52 @@
+[
+  {
+    "prompt": "Jaś ma 3 jabłka, a Ania ma 5 jabłek. Ile średnio przypada jabłek na osobę?",
+    "category": "medium",
+    "answer": 4
+  },
+  {
+    "prompt": "W koszyku jest 12 gruszek. Dołożono 7 gruszek. Ile gruszek jest teraz w koszyku?",
+    "category": "easy",
+    "answer": 19
+  },
+  {
+    "prompt": "Ola miała 20 zł i wydała 8 zł. Ile złotych jej zostało?",
+    "category": "easy",
+    "answer": 12
+  },
+  {
+    "prompt": "W 6 pudełkach są po 4 kredki. Ile kredek jest łącznie?",
+    "category": "easy",
+    "answer": 24
+  },
+  {
+    "prompt": "7 litrów soku rozlano równo do 2 pojemników. Ile litrów jest w każdym?",
+    "category": "easy",
+    "answer": 3.5
+  },
+  {
+    "prompt": "17 cukierków rozdzielono po równo między 5 osób, dając każdej tylko całe cukierki. Ile cukierków zostało?",
+    "category": "easy",
+    "answer": 2
+  },
+  {
+    "prompt": "Sześcian ma krawędź długości 3 cm. Jaka jest jego objętość w centymetrach sześciennych?",
+    "category": "hard",
+    "answer": 27
+  },
+  {
+    "prompt": "Temperatura wynosi -7 stopni Celsjusza. Jaka jest wartość bezwzględna tej liczby?",
+    "category": "easy",
+    "answer": 7
+  },
+  {
+    "prompt": "Kwadrat ma pole 81 centymetrów kwadratowych. Ile centymetrów ma jego bok?",
+    "category": "hard",
+    "answer": 9
+  },
+  {
+    "prompt": "Kupiono 3 zeszyty po 8 zł i zapłacono banknotem 50 zł. Ile złotych reszty należy otrzymać?",
+    "category": "medium",
+    "answer": 26
+  }
+]

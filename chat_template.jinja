@@ -1,0 +1,55 @@
+{%- if messages[0]['role'] == 'system' %}
+    {%- set system_message = messages[0]['content'] %}
+    {%- set loop_messages = messages[1:] %}
+{%- else %}
+    {%- set loop_messages = messages %}
+{%- endif %}
+
+{{- bos_token }}
+{%- set ns = namespace(expect_user=true) %}
+{%- for message in loop_messages %}
+    {%- if message['role'] in ['user', 'tool'] %}
+        {%- set continuing_tools = message['role'] == 'tool' and not loop.first and loop_messages[loop.index0 - 1]['role'] == 'tool' %}
+        {%- if not continuing_tools %}
+            {%- if not ns.expect_user %}
+                {{- raise_exception('Expected an assistant message before the next user/tool turn') }}
+            {%- endif %}
+            {{- '[INST]' }}
+            {%- if loop.first and system_message is defined %}
+                {{- system_message + '\n\n' }}
+            {%- endif %}
+            {%- set ns.expect_user = false %}
+        {%- endif %}
+        {%- if message['role'] == 'tool' %}
+            {{- '<tool_response>\n' + message['content'] + '\n</tool_response>' }}
+        {%- else %}
+            {{- message['content'] }}
+        {%- endif %}
+        {%- if message['role'] != 'tool' or loop.last or loop_messages[loop.index0 + 1]['role'] != 'tool' %}
+            {{- '[/INST]' }}
+        {%- else %}
+            {{- '\n' }}
+        {%- endif %}
+    {%- elif message['role'] == 'assistant' %}
+        {%- if ns.expect_user %}
+            {{- raise_exception('Expected a user/tool turn before the assistant message') }}
+        {%- endif %}
+        {%- generation %}
+            {{- message['content'] or '' }}
+            {%- for call in message.get('tool_calls', []) or [] %}
+                {%- if not loop.first or message['content'] %}{{- '\n' }}{%- endif %}
+                {{- '<tool_call>{"name": ' + (call['function']['name'] | tojson) + ', "arguments": ' }}
+                {%- if call['function']['arguments'] is string %}
+                    {{- call['function']['arguments'] }}
+                {%- else %}
+                    {{- call['function']['arguments'] | tojson }}
+                {%- endif %}
+                {{- '}</tool_call>' }}
+            {%- endfor %}
+            {{- eos_token }}
+        {%- endgeneration %}
+        {%- set ns.expect_user = true %}
+    {%- else %}
+        {{- raise_exception('Supported roles: initial system, user, assistant and tool') }}
+    {%- endif %}
+{%- endfor %}
