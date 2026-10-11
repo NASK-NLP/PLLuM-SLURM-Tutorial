@@ -11,7 +11,7 @@
 set -euo pipefail
 
 REPO_DIR="${SLURM_SUBMIT_DIR:-$PWD}"
-RUN_DIR="$SCRATCH/pllum-slurm-lab"
+RUN_DIR="$SCRATCH/PLLuM-SLURM-Tutorial"
 DATASET_PATH="$REPO_DIR/data/example.test.json"
 OUTPUT_DIR="$RUN_DIR/evaluation"
 

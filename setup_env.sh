@@ -13,7 +13,7 @@ set -euo pipefail
 REPO_DIR="${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
 : "${SCRATCH:?Run this on Athena with SCRATCH set}"
 
-RUN_DIR="$SCRATCH/pllum-slurm-lab"
+RUN_DIR="$SCRATCH/PLLuM-SLURM-Tutorial"
 VENV_DIR="$RUN_DIR/.venv"
 PYTHON_BIN="/net/software/v1/software/Python/3.12.3-GCCcore-13.3.0/bin/python3.12"
 

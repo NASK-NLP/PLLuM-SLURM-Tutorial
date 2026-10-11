@@ -14,7 +14,7 @@ REPO_DIR="${SLURM_SUBMIT_DIR:-$PWD}"
 cd "$REPO_DIR"
 DATASET_DIR="$REPO_DIR/data/tools_dataset.jsonl"
 MODEL_ID="CYFRAGOVPL/PLLuM-4B-instruct-2512"
-RUN_DIR="$SCRATCH/pllum-slurm-lab"
+RUN_DIR="$SCRATCH/PLLuM-SLURM-Tutorial"
 ADAPTER_DIR="$RUN_DIR/adapter"
 
 source "$RUN_DIR/.venv/bin/activate"
