@@ -12,7 +12,7 @@ set -euo pipefail
 
 REPO_DIR="${SLURM_SUBMIT_DIR:-$PWD}"
 cd "$REPO_DIR"
-DATASET_DIR="$REPO_DIR/data/tools_dataset.jsonl"
+DATASET_DIR="$REPO_DIR/data/train.jsonl"
 MODEL_ID="CYFRAGOVPL/PLLuM-4B-instruct-2512"
 RUN_DIR="$SCRATCH/pllum-slurm-lab"
 ADAPTER_DIR="$RUN_DIR/adapter"

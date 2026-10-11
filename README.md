@@ -358,7 +358,13 @@ Supervised fine-tuning teaches the model to produce the assistant responses show
 
 We use LoRA to train small adapter matrices while keeping the base model weights frozen. The base model is loaded in four-bit precision to reduce memory use, a combination commonly called QLoRA. The resulting adapter must be loaded together with the original base model. See the [PEFT quantization guide](https://huggingface.co/docs/peft/developer_guides/quantization) for details.
 
-`training/train.sh` uses `CYFRAGOVPL/PLLuM-4B-instruct-2512` and reads `data/tools_dataset.jsonl`. The training configuration in `training/train.py` is:
+`training/train.sh` uses `CYFRAGOVPL/PLLuM-4B-instruct-2512` and reads the included example dataset, `data/train.jsonl`, by default. To train on the conversations generated in section 11, select that file explicitly:
+
+```bash
+sbatch training/train.sh --data-file data/tools_dataset.jsonl
+```
+
+The training configuration in `training/train.py` is:
 
 | Setting | Value |
 | --- | --- |
