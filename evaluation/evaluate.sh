@@ -10,6 +10,9 @@
 
 set -euo pipefail
 
+export HF_HOME="$SCRATCH/.cache/huggingface"
+mkdir -p "$HF_HOME"
+
 REPO_DIR="${SLURM_SUBMIT_DIR:-$PWD}"
 RUN_DIR="$SCRATCH/PLLuM-SLURM-Tutorial"
 DATASET_PATH="$REPO_DIR/data/example.test.json"

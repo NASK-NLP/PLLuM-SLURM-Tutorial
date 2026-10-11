@@ -312,7 +312,7 @@ Wait for the `Environment ready:` message before using the environment. Press Ct
 
 ## 11. Generate training data
 
-We will use a larger model through LLMLab to generate examples for PLLuM. Each example contains a Polish word problem, the tool calls needed to solve it, their results, and the final answer. These complete conversations provide the supervision for both choosing operations and responding to tool results.
+We will use a larger model through [LLMLab](https://llmlab.plgrid.pl/) to generate examples for PLLuM. Each example contains a Polish word problem, the tool calls needed to solve it, their results, and the final answer. These complete conversations provide the supervision for both choosing operations and responding to tool results.
 
 Copy the credential template from the repository root:
 
@@ -358,7 +358,13 @@ Supervised fine-tuning teaches the model to produce the assistant responses show
 
 We use LoRA to train small adapter matrices while keeping the base model weights frozen. The base model is loaded in four-bit precision to reduce memory use, a combination commonly called QLoRA. The resulting adapter must be loaded together with the original base model. See the [PEFT quantization guide](https://huggingface.co/docs/peft/developer_guides/quantization) for details.
 
-`training/train.sh` uses `CYFRAGOVPL/PLLuM-4B-instruct-2512` and reads `data/tools_dataset.jsonl`. The training configuration in `training/train.py` is:
+`training/train.sh` uses `CYFRAGOVPL/PLLuM-4B-instruct-2512` and reads the included example dataset, `data/train.jsonl`, by default. To train on the conversations generated in section 11, select that file explicitly:
+
+```bash
+sbatch training/train.sh --data-file data/tools_dataset.jsonl
+```
+
+The training configuration in `training/train.py` is:
 
 | Setting | Value |
 | --- | --- |
@@ -471,4 +477,4 @@ sbatch evaluation/evaluate.sh \
 
 The benchmark contains 295 problems with unique IDs and no reference answers. The evaluator saves predictions, IDs, conversation traces, and any errors to `$SCRATCH/pllum-slurm-lab/evaluation-lb/samples.json`. It does not produce accuracy metrics or a `results.json` file for this dataset.
 
-After the job finishes, submit **only `samples.json`** to the leaderboard using the submission instructions supplied by the instructor.
+After the job finishes, submit **only `samples.json`** to the [PLLuM-SLURM-Tutorial leaderboard](https://huggingface.co/spaces/gamemeine/PLLuM-SLURM-Tutorial).
