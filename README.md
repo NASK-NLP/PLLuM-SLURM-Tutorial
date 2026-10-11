@@ -312,7 +312,7 @@ Wait for the `Environment ready:` message before using the environment. Press Ct
 
 ## 11. Generate training data
 
-We will use a larger model through LLMLab to generate examples for PLLuM. Each example contains a Polish word problem, the tool calls needed to solve it, their results, and the final answer. These complete conversations provide the supervision for both choosing operations and responding to tool results.
+We will use a larger model through [LLMLab](https://llmlab.plgrid.pl/) to generate examples for PLLuM. Each example contains a Polish word problem, the tool calls needed to solve it, their results, and the final answer. These complete conversations provide the supervision for both choosing operations and responding to tool results.
 
 Copy the credential template from the repository root:
 
@@ -477,4 +477,4 @@ sbatch evaluation/evaluate.sh \
 
 The benchmark contains 295 problems with unique IDs and no reference answers. The evaluator saves predictions, IDs, conversation traces, and any errors to `$SCRATCH/pllum-slurm-lab/evaluation-lb/samples.json`. It does not produce accuracy metrics or a `results.json` file for this dataset.
 
-After the job finishes, submit **only `samples.json`** to the leaderboard using the submission instructions supplied by the instructor.
+After the job finishes, submit **only `samples.json`** to the [PLLuM-SLURM-Tutorial leaderboard](https://huggingface.co/spaces/gamemeine/PLLuM-SLURM-Tutorial).
